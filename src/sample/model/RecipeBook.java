@@ -7,26 +7,42 @@ import sample.persistence.RecipeLibrary;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Random;
 
 public class RecipeBook implements Serializable {
 
+    String name;
+
     ArrayList<Recipe> listOfRecipes = new ArrayList<>();
 
-    public RecipeBook() {}
+    public RecipeBook(String name) {
+        this.name = name;
+    }
 
+    //EKSEMPEL på ArrayList
     public ArrayList<Recipe> getListOfRecipes() {
 
         return listOfRecipes;
     }
-
+    //EKSEMPEL på SETTER
     public void setListOfRecipes(ArrayList<Recipe> listOfRecipes) {
         this.listOfRecipes = listOfRecipes;
     }
 
-    public RecipeBook(ArrayList<Recipe> listOfRecipes) {
-        this.listOfRecipes = listOfRecipes;
+    //Eksempel på søgning
+    public  ArrayList<Recipe> findRecipesContaining(String ingredientName) {
+        //EKSEMPEL på var variable
+        var recipes = new ArrayList<Recipe>();
+        for (Recipe recipe: listOfRecipes) {
+            for (Ingredient ingredient: recipe.listOfIngredients) {
+                if (ingredient.getIngredientName().equals(ingredientName)) {
+                    recipes.add(recipe);
+                }
+            }
+        }
+
+        return recipes;
     }
     private void printRecipes() {
         System.out.println(" ////////////////////\n ");
@@ -36,9 +52,8 @@ public class RecipeBook implements Serializable {
 
 
 
-
     public static void main(String[] args) {
-        /*RecipeBook recipeBook = new RecipeBook();
+        RecipeBook recipeBook = new RecipeBook("Mikes Cooking Book");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
         ingredients.add(new LiquidIngredient("water", 1.));
@@ -50,7 +65,7 @@ public class RecipeBook implements Serializable {
                 STEP 3: Enjoy! Either on a cake, or straight from the bowl, YUM!
                 """));
 
-        ingredients.clear();
+        ingredients = new ArrayList<>();
         ingredients.add(new LiquidIngredient("Milk", 350.0));
         ingredients.add(new LiquidIngredient("Cocoa Powder", 100.0 ));
         recipeBook.getListOfRecipes().add(new Recipe("varm kakao", 10, ingredients, """
@@ -60,10 +75,26 @@ public class RecipeBook implements Serializable {
                 """));
         recipeBook.printRecipes();
 
-        RecipeLibrary.saveProjects(recipeBook);*/
+        RecipeLibrary.saveProjects(recipeBook);
 
-        RecipeBook recipeBook = RecipeLibrary.loadProjects();
-        recipeBook.getListOfRecipes().forEach(i -> System.out.println(i.toString()));
+        //recipeBook = RecipeLibrary.loadProjects();
+        //recipeBook.findRecipesContaining("Milk").forEach(recipe -> System.out.println(recipe.toString()));
 
+    }
+
+    public void addRecipe(String name, int timeToMake, Ingredient[] ingredientArray, String toDo) {
+        var ingredients = new ArrayList<Ingredient>();
+        //EKSEMPEL på for i loop
+
+        for (int i = 0; i < ingredientArray.length ; i++) {
+            ingredients.add(ingredientArray[i]);
+        }
+
+        this.listOfRecipes.add(new Recipe(name, timeToMake, ingredients, toDo));
+    }
+
+    public Recipe getRandomRecipe() {
+        Random r = new Random();
+        return getListOfRecipes().get(r.nextInt(getListOfRecipes().size()));
     }
 }

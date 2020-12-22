@@ -2,6 +2,8 @@ package sample.model.ingredients;
 
 import java.io.Serializable;
 
+
+//EKSEMPEL på Nedarvning
 public class SolidIngredient extends Ingredient implements Serializable {
 
     Double kcalPerHundredGram;

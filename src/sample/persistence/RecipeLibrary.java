@@ -8,12 +8,14 @@ import sample.model.RecipeBook;
 import java.io.*;
 import java.util.ArrayList;
 
+
+//EKSEMPEL på persistence
 public class RecipeLibrary {
 
     static FileChooser fileChooser = new FileChooser();
 
     public static void saveProjects(RecipeBook recipeBook) {
-
+        //Eksempel på try-catch
         try
         {
             FileOutputStream fileOut = new FileOutputStream("src/sample/persistence/projects.file");
@@ -23,9 +25,10 @@ public class RecipeLibrary {
             e.printStackTrace();
         }
     }
+
     public static RecipeBook loadProjects() {
         //File projectFile = fileChooser.showOpenDialog(Main.getScene().getWindow());
-
+        //
         try
         {
             // Reading the object from a file
@@ -50,7 +53,7 @@ public class RecipeLibrary {
         catch(ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
-        return new RecipeBook();
+        return new RecipeBook("Unknown CookBook");
     }
 }
 

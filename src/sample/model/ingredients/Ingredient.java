@@ -7,6 +7,7 @@ public class Ingredient implements Serializable {
 
     String ingredientName;
 
+    //EKSEMPEL på GETTER
     public String getIngredientName() {
         return ingredientName;
     }

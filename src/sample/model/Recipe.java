@@ -11,6 +11,10 @@ import java.util.HashMap;
 
 public class Recipe implements Serializable {
 
+    public String getName() {
+        return name;
+    }
+
     String name;
 
     Double totalKCal;
@@ -19,13 +23,16 @@ public class Recipe implements Serializable {
 
     int ingredientsCount;
 
+    // EKSEMPEL på VARIABLE declaration
     ArrayList<Ingredient> listOfIngredients;
 
     String toDo;
 
+    //EKSEMPEL på CONSTRUCTOR
     public Recipe(String name, int timeToMake, ArrayList<Ingredient> listOfIngredients, String toDo) {
         this.name = name;
         this.timeToMake = timeToMake;
+        //ESEMPEL PÅ VARIABLE instanciering
         this.listOfIngredients = listOfIngredients;
         this.ingredientsCount = listOfIngredients.size();
         this.toDo = toDo;
@@ -34,6 +41,7 @@ public class Recipe implements Serializable {
 
     public void addIngredient(String name, Double kcal, String ingredientType) {
 
+        //EKSEMPEL på IF
         if (ingredientType.equals("Solid")) {
             listOfIngredients.add(new SolidIngredient(name, kcal));
         }
@@ -44,7 +52,9 @@ public class Recipe implements Serializable {
 
     private Double calculateTotalKCal() {
         Double total = 0.0;
+        //EKSEMPEL på For Each løkke
         for (Ingredient ingredient : listOfIngredients) {
+
             if (ingredient.getClass().getSimpleName().equals("LiquidIngredient")) {
                 total += ((LiquidIngredient) ingredient).getKcalPerDeciliter();
             }
@@ -55,17 +65,6 @@ public class Recipe implements Serializable {
 
         return total;
     }
-
-    @Override
-    public String toString() {
-
-        return "How to make: " + this.name + "\n" +
-                "Time to prepare: " + this.timeToMake + " minutes." +  "\n" +
-                "Total kcal: " + this.totalKCal + "\n" +
-                "List of ingredients: " + stringifyListOfIngredients() + "\n" +
-                "To Do: " + toDo;
-    }
-
     private String stringifyListOfIngredients() {
         StringBuilder sb = new StringBuilder();
 
@@ -74,5 +73,15 @@ public class Recipe implements Serializable {
             sb.append(", ");
         }
         return sb.toString();
+    }
+    @Override
+    public String toString() {
+
+        return "How to make: " + this.name + "\n" +
+                "Time to prepare: " + this.timeToMake + " minutes." +  "\n" +
+                "Total kcal: " + this.totalKCal + "\n" +
+                "Number of ingredients: " + this.ingredientsCount + "\n" +
+                "List of ingredients: " + stringifyListOfIngredients() + "\n" +
+                "To Do: " + toDo;
     }
 }
