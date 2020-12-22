@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,23 +18,20 @@ public class Controller implements Initializable {
     private Label nameLabel;
 
     @FXML
-    private Button randomRecipeButton;
-
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private Button addRecipeButton;
-
-    @FXML
     private TextArea recipeField;
 
+    @FXML private Label addRecipeName;
+
+    @FXML private
+
     RecipeBook recipeBook;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.recipeBook = RecipeLibrary.loadProjects();
 
         nameLabel.setText(recipeBook.getListOfRecipes().get(0).getName());
+        recipeField.setText(recipeBook.getListOfRecipes().get(0).toString());
 
     }
 
@@ -41,5 +39,13 @@ public class Controller implements Initializable {
         Recipe recipe = recipeBook.getRandomRecipe();
         this.nameLabel.setText(recipe.getName());
         this.recipeField.setText(recipe.toString());
+    }
+
+    public void addRecipe() {
+
+    }
+
+    public void save() {
+        RecipeLibrary.saveProjects(this.recipeBook);
     }
 }
