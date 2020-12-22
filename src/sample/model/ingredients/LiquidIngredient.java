@@ -1,6 +1,8 @@
 package sample.model.ingredients;
 
-public class LiquidIngredient extends Ingredient {
+import java.io.Serializable;
+
+public class LiquidIngredient extends Ingredient implements Serializable {
 
     Double kcalPerDeciliter;
 

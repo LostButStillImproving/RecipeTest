@@ -4,11 +4,12 @@ import sample.model.ingredients.Ingredient;
 import sample.model.ingredients.LiquidIngredient;
 import sample.model.ingredients.SolidIngredient;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Recipe {
+public class Recipe implements Serializable {
 
     String name;
 
@@ -45,7 +46,6 @@ public class Recipe {
         Double total = 0.0;
         for (Ingredient ingredient : listOfIngredients) {
             if (ingredient.getClass().getSimpleName().equals("LiquidIngredient")) {
-                System.out.println(((LiquidIngredient) ingredient).getKcalPerDeciliter());
                 total += ((LiquidIngredient) ingredient).getKcalPerDeciliter();
             }
             if (ingredient.getClass().getSimpleName().equals("SolidIngredient")) {

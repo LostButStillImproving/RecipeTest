@@ -1,6 +1,8 @@
 package sample.model.ingredients;
 
-public class Ingredient {
+import java.io.Serializable;
+
+public class Ingredient implements Serializable {
 
 
     String ingredientName;
