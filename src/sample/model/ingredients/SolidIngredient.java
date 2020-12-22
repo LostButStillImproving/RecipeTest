@@ -8,4 +8,8 @@ public class SolidIngredient extends Ingredient{
         super.ingredientName = name;
         this.kcalPerHundredGram = kcalPerHundredGram;
     }
+
+    public Double getKcalPerHundredGram() {
+        return kcalPerHundredGram;
+    }
 }

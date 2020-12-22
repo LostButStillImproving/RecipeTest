@@ -35,10 +35,10 @@ public class RecipeBook {
     public static void main(String[] args) {
         RecipeBook recipeBook = new RecipeBook();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new LiquidIngredient("water", 0.0));
+        ingredients.add(new LiquidIngredient("water", 1.));
         ingredients.add(new SolidIngredient("Powdered Sugar", 300.0));
 
-        recipeBook.getListOfRecipes().add(new Recipe("Glasur", (long) 5, ingredients, "STEP 1; STEP 2"));
+        recipeBook.getListOfRecipes().add(new Recipe("Glasur",  5, ingredients, "STEP 1; STEP 2"));
 
         recipeBook.printRecipe();
 

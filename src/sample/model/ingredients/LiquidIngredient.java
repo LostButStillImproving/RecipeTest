@@ -8,4 +8,8 @@ public class LiquidIngredient extends Ingredient {
         super.ingredientName = name;
         this.kcalPerDeciliter = kcalPerDeciliter;
     }
+
+    public Double getKcalPerDeciliter() {
+        return kcalPerDeciliter;
+    }
 }
